@@ -1,0 +1,83 @@
+/*Paiva, no cabeçalho do exercício está escrito que o desvio padrão populacional deve ser calculado, mas no seu exemplo de execução é o desvio padrão amostral que está sendo calculado. Então, resolvi seguir o exemplo mesmo, fiz o desvio padrão amostral, ok?
+*/
+
+
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int N;
+    float sum = 0.0; 
+    
+    // Solicita ao usuário a quantidade de números na série (N)
+    printf("Quantos números na sua série (N): ");
+    scanf("%d", &N);
+    
+    // Verifica se N é menor ou igual a zero, em caso afirmativo, exibe uma mensagem de erro e encerra o programa
+    if (N <= 0) {
+        printf("A quantidade de valores deve ser maior que zero.\n");
+        return 1;
+    }
+    
+    float valores[N];
+    
+    // Lendo os valores inseridos pelo usuário
+    printf("Entre com %d números:\n", N);
+    for (int i = 0; i < N; i++) {
+        scanf("%f", &valores[i]);
+        sum += valores[i];  // Soma dos valores pra calcular a média
+    }
+    
+    // Cálculo do máximo e mínimo
+    float max = valores[0]; 
+    float min = valores[0]; 
+    
+    for (int i = 1; i < N; i++) {
+        if (valores[i] > max) {
+            max = valores[i];  // Atualiza o valor máximo se outro valor maior for encontrado
+        }
+        if (valores[i] < min) {
+            min = valores[i];  // Atualiza o valor mínimo se outro valor menor for encontrado
+        }
+    }
+    
+    // Cálculo da média
+    float media = sum / N; // Modificado para float
+    
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = i + 1; j < N; j++) {
+            if (valores[i] > valores[j]) {
+                float temp = valores[i]; 
+                valores[i] = valores[j]; 
+                valores[j] = temp; 
+            }
+        }
+    }
+    
+    // Cálculo da mediana
+    float mediana;
+    if (N % 2 == 0) {
+        mediana = (valores[N / 2 - 1] + valores[N / 2]) / 2.0; 
+    } else {
+        mediana = valores[N / 2]; 
+    }
+    
+    // Cálculo do desvio-padrão amostral
+    float somaDiferencasQuadradas = 0.0; // Modificado para float
+    for (int i = 0; i < N; i++) {
+        somaDiferencasQuadradas += pow(valores[i] - media, 2);
+    }
+    float desvioPadrao = sqrt(somaDiferencasQuadradas / (N - 1)); 
+    
+    // Imprimindo os resultados
+    printf("Valor Mínimo: %.2f\n", min); 
+    printf("Valor Máximo: %.2f\n", max); 
+    printf("Média: %.2f\n", media); 
+    printf("Mediana: %.2f\n", mediana); 
+    printf("Desvio-Padrão: %.2f\n", desvioPadrao);
+    
+    return 0;
+}
+
+    
+   
