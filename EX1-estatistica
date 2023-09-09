@@ -1,3 +1,10 @@
+//////////////////////////////////////////
+// EX1- Linguagem C: Estatística básica
+// Juliana Madeu Teixeira
+// 09/09/2023
+//////////////////////////////////////////
+
+
 /*Paiva, no cabeçalho do exercício está escrito que o desvio padrão populacional deve ser calculado, mas no seu exemplo de execução é o desvio padrão amostral que está sendo calculado. Então, resolvi seguir o exemplo mesmo, fiz o desvio padrão amostral, ok?
 */
 
